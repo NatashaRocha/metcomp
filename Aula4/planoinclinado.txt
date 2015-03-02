@@ -1,0 +1,15 @@
+Primeiramente devemos definir valores para a massa M do corpo, o angulo THETA que o plano faz com a horizontal, a 
+altura inicial H do corpo e os coeficientes de atrito estatico MI_E e cinetico MI_C.
+
+Em seguida e necessario descobrir se o corpo entrara em movimento. Para que isso ocorra, a força de atrito estático 
+(M*G*COS(THETA)*MI_E deve ser menor que a componente da força peso paralela ao plano inclinado (M*G*SIN(THETA)), ou seja:
+COS(THETA)*MI_E < SIN(THETA) (para que haja movimento)
+
+Se houver movimento, para encontrar o tempo necessario para o corpo atingir o chao devemos calcular a sua aceleração 
+A. Considerando que as unicas forcas que atuam na componente paralela ao plano sao o peso e o atrito cinetico, encontramos 
+a seguinte expressao: M*G*SIN(THETA) - M*G*COS(THETA)*MI_C = M*A. Logo:
+A = G(SIN(THETA) - COS(THETA)*MI_C)
+
+Sabemos que S = S0 + S0*T + A*T^2/2. Considerando v0 = 0 e a distancia percorrida pelo corpo como H/SIN(THETA), podemos 
+reduzir essa equacao para H/SIN(THETA) = A*T^2/2. Logo:
+T = SQRT(2*H/(A*SIN(THETA)))

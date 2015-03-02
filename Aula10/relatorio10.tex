@@ -1,0 +1,75 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{fullpage}
+\usepackage[affil-it]{authblk}
+\usepackage{graphicx}
+\usepackage{placeins}
+
+\title{{\Huge\textbf{Resolução de Sistemas de EDOs}}}
+\author{Natasha M. da Rocha}
+\date{\today}
+
+\begin{document}
+
+\maketitle 
+
+\section{Método de Runge-Kutta de quarta ordem}
+Os métodos de Runge-Kutta são um conjunto de métodos para a resolução numérica de equações diferenciais ordinárias. O mais utilizado é o chamado método de Runge-Kutta de quarta ordem, ou simplesmente "RK4". Dado um problema de valor inicial, com condições do tipo:
+\begin{equation}
+\frac{\mathrm{d}y}{\mathrm{d}x} = f(x,y),\;\;y(x_0) = y_0
+\end{equation}
+Podemos aproximar pontos sucessivos da função usando as seguintes fórmulas:
+\begin{equation}
+y_{i+1}=y_i+\frac{h}{6}(f_0+2f_1+2f_2+f_3)
+\end{equation}
+\begin{equation}
+x_{i+1}=x_{i}+h
+\end{equation}
+Onde:
+\begin{center}
+$f_0 = f(x_0,y_0)$\\
+$f_1 = f((x_0+h/2),(y_0+(h/2)f_0))$\\
+$f_2 = f((x_0+h/2),(y_0+(h/2)f_1))$\\
+$f_3 = f((x_0+h),(y_0+hf_2))$
+\end{center}
+O método também pode ser usado para resolver sistemas de equações acopladas se usarmos notação vetorial:
+\begin{equation}
+\frac{\mathrm{d}\vec{S}}{\mathrm{d}t} = \vec{f}(\vec{S})
+\end{equation}
+
+\section{Movimento da Terra em torno do Sol}
+Considere que a única força que atua sob a Terra é a atração gravitacional entre ela e o Sol. Pela Segunda Lei de Newton, temos então que:
+\begin{equation}
+\vec{F} = \frac{GM_{sol}M_{terra}}{|\vec{r}|^3}\vec{r} = M_{terra}\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}
+\end{equation}
+Sendo assim, teremos as seguintes variáveis (e suas derivadas) para o uso no método de Runge-Kutta:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+$j$ & \textbf{$S[j]$} & \textbf{$\mathrm{d}S[j]/\mathrm{d}t$} \\ 
+\hline 
+{\small 0} & $x$ & $v_x$ \\ 
+
+{\small 1} & $v_x$ & $-\frac{GM_{sol}}{(x^2+y^2)^{3/2}}x$ \\ 
+
+{\small 2} & $y$ & $v_y$ \\ 
+
+{\small 3} & $v_y$ & $-\frac{GM_{sol}}{(x^2+y^2)^{3/2}}y$ \\ 
+\hline 
+\end{tabular}
+\end{center}
+
+\section{Resultados}
+Consideramos $G = 6.67*10^{-11}Nm^2/kg^2$, $M_{sol} = 1.98*10^{30}kg$, $x_0=1.496*10^{11}m$ e $v_{y_0}=2.97*10^4m/s$. Como a velocidade é perpendicular à força, $\vec{F}$ não realiza trabalho e o módulo da velocidade se mantém constante, só mudando sua direção. Assim, esperava-se que a curva fosse uma circunferência de raio $x_0$. No gráfico a seguir estão os resultados encontrados para passos de um dia, uma hora, e um minuto:
+\FloatBarrier
+\begin{figure}[!ht]
+\center
+\includegraphics[scale=.25]{kepler.jpg}
+\end{figure}
+\FloatBarrier
+
+\section{Conclusões}
+Podemos ver pelo gráfico que conseguimos uma boa precisão com os três passos. O mais eficiente, entretanto, foi o passo de uma hora, pois com ele conseguimos um número considerável de pontos, mas sem prejudicar o tempo de processamento dos dados, como aconteceu para o passo de um minuto.
+
+\end{document}

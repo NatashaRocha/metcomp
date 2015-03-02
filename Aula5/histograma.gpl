@@ -1,0 +1,5 @@
+reset
+set terminal pdf
+set output 'histograma.pdf'
+set nokey
+plot 'histograma.dat' using 1:2 with boxes

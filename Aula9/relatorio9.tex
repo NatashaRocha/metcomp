@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{fullpage}
+\usepackage[affil-it]{authblk}
+\usepackage{graphicx}
+\usepackage{placeins}
+
+\title{\textbf{Velocidade de um corpo sob ação de força viscosa usando o método de Euler}}
+\author{Natasha M. da Rocha}
+\affil{Universidade Federal do Rio de Janeiro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Movimento de um corpo em meio viscoso}
+Uma bolha em meio viscoso (xampu, por exemplo) sofre ação de três forças: da gravidade, empuxo e uma força de atrito devido à viscosidade. Assim, pela segunda lei de Newton:
+\begin{equation}
+\rho_{ar} V\frac{d\vec{v}}{dt} = \rho_x Vg - \rho_{ar} Vg - bv^r
+\end{equation}
+Considerando o volume da bolha igual a $\frac{4}{3}\pi R^3$:
+\begin{equation}
+\frac{d\vec{v}}{dt} = \frac{\rho_x-\rho_{ar}}{\rho_{ar}} g - \frac{b}{\frac{4}{3}\pi\rho_{ar}R^3}v^r
+\end{equation}
+Onde $\rho_x$ é a densidade do meio viscoso, $\rho_{ar}$ é a densidade do ar, 
+
+\section{Método de Euler}
+Pela dificuldade de se calcular analiticamente a Equação Diferencial Ordinária (EDO) [2], usamos o Método de Euler para calculá-la numericamente. O método consiste em aproximar a função em uma reta em um ponto dado e estimar um próximo ponto a partir da mesma, repetindo o processo para o próximo ponto, conforme indicado na figura abaixo:
+\FloatBarrier
+\begin{figure}[!ht]
+\center
+\includegraphics[scale=0.18]{euler.png}
+\end{figure}
+\FloatBarrier
+A distância entre os pontos define a precisão, ou seja, quanto menor a mesma, mais precisa é a aproximação - em contrapartida, maior é o número de pontos a serem encontrados -. A fórmula para a utilização do método é a seguinte:
+\begin{equation}
+y_{i+1} = y_i + hf(x_i,y_i)
+\end{equation}
+Onde $f(x_i,y_i)$ é o valor da derivada de $y$ em função de $x$.
+
+\section{Resultados}
+Consideramos $\rho_{ar} = 1.25*10^{-6} gmm^{-3}$, $\rho_x=1.03*10^{-3} gmm^{-3}$, $g=9.78*10^{-3}mms^{-2}$, $r = 1.7$ e $b = 420gs^{-0.3}mm^{-0.7}$. Para uma bolha com diâmetro de $5mm$ e usando o Método de Euler, encontramos os valores contidos no seguinte grafico:
+
+\FloatBarrier
+\begin{figure}[!ht]
+\center
+\includegraphics{bolhas.pdf}
+\end{figure}
+\FloatBarrier
+
+\section{Conclusões}
+Usando um passo de $10^-7$ s, encontramos que a velocidade limite para o qual a função converge é igual à $1.302833$ mm/s. Descobrimos também que usando um passo de $2*10^{-8}$s, a velocidade converge nessa velocidade limite.
+
+\end{document}

@@ -1,0 +1,46 @@
+#!/usr/bin/python
+import os, sys
+import commands
+import shutil
+import urllib
+import re
+import string
+from types import *
+
+# Copia os tarbalhos da area de cada aluno
+# Argumento 1: diretorio correspondnete ao trabalho,. Ex.: Aula1 (obrigatorio)
+# Argumento 2: logins de um aluno especifico. Neste caso copia o trabalho so deste aluno (opcional)
+
+if len(sys.argv)<1:
+  print "Informe qual o diretorio correspondente ao trabalho. Ex.: Aula1"
+  exit(1)
+  
+aula=sys.argv[1]  
+linhas = []
+if len(sys.argv)==3: linhas = [sys.argv[2]]
+
+if len(sys.argv)>3: 
+   print "More than two argiments. Extra arguments will be ignored"
+
+
+if len(linhas)==0:
+   fname = open('alunos','r')
+   linhas = fname.readlines()
+
+for user in linhas:
+    print "+++++ ",user
+    username = string.split(user)[0]
+    from_path = '/home/'+username+'/MetComp/Trabalho/'+aula
+    to_path = "/home/joselopes/MetComp/2013-1/Trabalho/"+aula+"/"+username
+    acharelatorio = 'ls '+from_path+'/*'
+    #print "Buscando relatorio do aluno ", user
+    status = os.system(acharelatorio)
+    if status != 0: 
+        print "Relatorio nao encontrado para o/a aluno ", username
+	continue
+    os.system('mkdir -p '+to_path)
+    #copia = 'cp   -R '+from_path+'/segundograu.c '+to_path
+    copia = 'cp    '+from_path+'/* '+to_path
+    status = os.system(copia)
+    if status != 0: print "    A copia falhou para o aluno ", username
+    #else: "Copia bem sucedida para o aluno ", username 
