@@ -1,0 +1,15 @@
+Algoritmo para o calculo das raizes de uma equacao do segundo grau:
+
+Ax² + Bx + C = 0
+
+Escolher valores para os coeficientes A, B e C (A nao pode ser igual a zero, ou a equacao nao sera do segundo grau);
+
+Se B*B - 4AC > 0:
+	A equacao tera duas raizes reais;
+	Raizes = (-B +- sqrt(B*B - 4AC))/2A;
+Se B*B - 4AC = 0:
+	A equacao tera uma raiz real;
+	Raiz = -B/2A
+Se B*B - 4AC < 0:
+	A equacao tera duas raizes complexas;
+	Raizes = (-B +- i*sqrt(-(B*B - 4AC)))2A;

@@ -1,0 +1,8 @@
+Algoritmo para descobrir o maior numero em uma lista:
+
+Escolher os numeros da lista (x1,x2,...,xn);
+Definir o maior numero como sendo x1;
+Se x2 for maior que x1, definir o maior numero como sendo x2;
+Se x3 for maior que o maior numero atual, definir o maior numero como sendo x3;
+...
+Se xn for maior que o maior numero atual, definir o maior numero como sendo xn;

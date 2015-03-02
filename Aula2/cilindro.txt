@@ -1,0 +1,19 @@
+Escolher raio R e altura H para o cilindro;
+
+a) Calculo do volume:
+
+V = area da base do cilindro (pi*R*R) vezes a sua altura (H);
+
+---------------------------------------------------------------
+
+b) A soma das areas das suas superficies:
+
+S = 2 vezes area da base (pi*R*R) + area lateral (2*pi*R*H);
+
+---------------------------------------------------------------
+
+c) Raio de uma esfera de mesmo volume:
+
+O volume de uma esfera e (4/3)pi*r*r*r, que vai ser igual a V;
+
+r = raíz cúbica de (V*3/4)
