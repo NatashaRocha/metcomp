@@ -1,4 +1,4 @@
-/* Programa para calculo do fatorial de N */
+/* Programa para calculo do fatorial de N sem recursividade */
 
 #include <stdio.h>
 
